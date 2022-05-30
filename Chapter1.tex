@@ -1,0 +1,154 @@
+\documentclass[12pt]{report}
+\title{\textbf{MAP2302 Differential Equations \\ Chapter 1}}
+\author{Tobias Dault}
+\date{\today}
+
+\addtolength{\textheight}{3cm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage[tmargin=1in,lmargin=1in,rmargin=1in]{geometry}
+\usepackage{titlesec}
+
+\DeclareCaptionFormat{custom}
+{%
+	\textbf{\footnotesize #1#2}\textit{\footnotesize #3}
+}
+\captionsetup{format=custom}
+
+\graphicspath{ {./assets/} }
+
+\hypersetup{ colorlinks=true, linkcolor=blue, filecolor=purple, urlcolor=cyan }
+
+\newlength\tindent
+\setlength{\tindent}{\parindent}
+\setlength{\parindent}{0pt}
+\renewcommand{\indent}{\hspace*{\tindent}}
+
+\setlist[description]{noitemsep, topsep=0pt, itemsep=.5em}
+\setlist[enumerate]{noitemsep, topsep=0pt, itemsep=.5em}
+\setlist[itemize]{noitemsep, topsep=0pt, itemsep=.5em}
+
+\titleformat{\chapter}
+{\Large\bfseries}
+{\thechapter.}{0.5em}{}
+
+\titleformat{\section}
+{\large\bfseries}
+{\thesection.}{0.5em}{}
+
+\titleformat{\subsection}
+{\normalsize\bfseries}
+{\thesubsection.}{0.5em}{}
+
+\titlespacing\chapter{0pt}{12pt plus 0pt minus 4pt}{0pt plus 0pt minus 4pt}
+\titlespacing\section{0pt}{12pt plus 4pt minus 8pt}{0pt plus 2pt minus 8pt}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\thispagestyle{empty}
+	\chapter*{1.1 Background}
+		\section*{Derivations}
+		\section*{Exercises}
+			\emph{Classify 1-12 as an ordinary differential equation (ODE) or a partial differentiation (PDE), give the order, and indicate the independent and dependent variables. If ODE, indicate whether the equation is linear or nonlinear.}\\
+			ODE: If $d$ is used.\\
+			PDE: If $\partial$ is used.\\
+			Order: highest exponent used on a variable.\\
+			Independent Variable (ind. var.): denominator\\
+			Dependent Variable (dep. var.): numerator\\
+			Linear: In polynomial form\\
+			\begin{enumerate}
+				\item $5\frac{d^x}{dt^2}+4\frac{dx}{dt}+9x=2\cos3t$\\ %1
+				(mechanical vibrations, electrical circuits, seismology)\\
+				ODE, 2nd-Order, ind. var. = $t$, dep. var. = $x$, linear
+				\item $\frac{d^2y}{dx^2}-2x\frac{dy}{dx}+2x=0$\\ %2
+				(Hermite's equation, quantum-mechanical harmonic oscillator)\\
+				ODE, 2nd-Order, ind. var. = $x$, dep. var. = $y$, linear
+				\item $\frac{dy}{dx}=\frac{y(2-3x)}{x(1-3y)}$\\ %3
+				(competition between two species, ecology)\\
+				ODE, 1st-Order, ind. var. = $x$, dep. var. = $y$, nonlinear
+				\item $\frac{\partial^2u}{\partial x^2}+\frac{\partial^2u}{\partial y^2}=0$\\ %4
+				(Laplace's equation, potential theory, electricity, heat, aerodynamics)\\
+				PDE, 2nd-Order, ind. var. = $x,y$, dep. var. = $u$
+				\item $y[1+(\frac{dy}{dx})^2]=C$, where $C$ is a constant\\ %5
+				(brachistochrone problem, calculus)\\
+				ODE, 1st-Order, ind. var. = $x$, dep. var. = $y$, nonlinear
+				\item $\frac{dx}{dt}=k(4-x)(1-x)$, where $k$ is a constant\\ %6
+				(chemical reaction rates)\\
+				PDE, 1st-Order, ind. var. = $t$, dep. var. = $x$, nonlinear
+				\item $\frac{dp}{dt}=kp(P-p)$, $k$ and $P$ are constant\\ %7
+				(logistic curve, epidemiology, economics)\\
+				PDE, 1st-Order, ind. var. = $t$, dep. var. = $p$, nonlinear
+				\item $\sqrt{1-y}\frac{d^2y}{dx^2}+2x\frac{dy}{dx}=0$\\ %8
+				(Kidder's equation, flow of gases through a porous medium)\\
+				PDE, 2nd-Order, ind. var. = $x$, dep. var. = $y$, linear
+				\item $x\frac{d^2y}{dx^2}+\frac{dy}{dx}+xy=0$\\ %9
+				(aerodynamics, stress analysis)\\
+				PDE, 2nd-Order, ind. var. = $x$, dep. var. = $y$, linear
+				\item $8\frac{d^4y}{dx^4}=x(1-x)$\\ %10
+				(deflection of beams)\\
+				PDE, 4th-Order, ind. var. = $x$, dep. var. = $y$, nonlinear
+				\item $\frac{\partial N}{\partial t}=\frac{\partial^2N}{\partial r^2}+\frac{1}{r}\frac{\partial N}{\partial t}+kN$, where $k$ is a constant\\ %11
+				(nuclear fission)\\
+				ODE, 2nd-Order, ind. var. = $r,t$, dep. var. = $N$
+				\item $\frac{d^2y}{dx^2}-0.1(1-y^2)\frac{dy}{dx}+9y=0$\\ %12
+				(van der Pol's equation, triode vacuum tube)\\
+				PDE, 2nd-Order, ind. var. = $x$, dep. var. = $y$, linear\\\\
+				
+				\emph{In problems 13-16, write a differential equation that fits the physical description.}
+				\item The rate of change of the population $p$ of bacteria at time $t$ is proportional to the population at time t.\\
+				$\frac{dp}{dt}=kp$, where $k$ is the proportionality constant.
+				\item The velocity at time $t$ of a particle moving along a straight line is proportional to the fourth power of its position $x$.\\
+				$\frac{dx}{dt}=kx^4$, where $k$ is the proportionality constant
+				\item The rate of change in the temperature $T$ of coffee at time $t$ is proportional to the difference between the temperature $M$ of the air at time $t$ and the temperature of the coffee at time $t$.\\
+				$\frac{dT}{dt}=k(M-T)$, where $k$ is the proportionality constant
+				\item The rate of change of the mass $A$ of salt at a time $t$ is proportional to the square of the mass of salt present at time $t$.\\
+				$\frac{dA}{dt}=kA^2$
+				\item \textbf{Drag Rage.} Two drivers, Alison and Kevin, are participating in a drag race. Beginning from a standing start, they each proceed with a constant acceleration. Alison covers the last 1/4 of the distance in 3 seconds, whereas Kevin covers the last 1/3 of the distance in 4 seconds. Who wins and by how much time?\\
+				Kevin wins by $6\sqrt{3}-4\sqrt{6}\approx0.594$\\
+				$L=\frac{at_1^2}{2}$, \:$t_1=\sqrt{\frac{2L}{a}}$\\
+				$2L=\frac{at_2^2}{2}$, \:$t_2=\sqrt{\frac{4L}{a}}=\sqrt{2t_1}$\\
+				$3L=\frac{at_3^2}{2}$, \:$t_3=\sqrt{\frac{6L}{a}}=\sqrt{3t_1}$\\
+				$4L=\frac{at_4^2}{2}$, \:$t_4=\sqrt{\frac{8L}{a}}=\sqrt{4t_1}$\\
+				$t_4-t_3=(\sqrt{4}-\sqrt{3})t_1=3s$, \:$t_1=\frac{3}{\sqrt{4}-\sqrt{3}}s$\\
+				total time = $t_4=\sqrt{4}t_1=3\sqrt{4}(\sqrt{4}+\sqrt{3})=6(2+\sqrt{3})=$22.4s\\
+				Same process for Kevin gives us $4(3+\sqrt{6})=21.8s$\\
+				Kevin wins by 0.6 seconds.
+				
+			\end{enumerate}
+		\section*{MyLab}
+			\begin{enumerate}
+				\item A differential equation is given. Classify it as an ordinary differential equation (ODE) or a partial differential equation (PDE), give the order, and indicate the independent and dependent variables. If the equation is an ordinary differential equation, indicate whether the equation is linear or nonlinear.\\\\
+				$\frac{dp}{dt}=kp(P-p)$, where $k$ and $P$ are constants\\
+				(logistic curve, epidemiology, economics)\\\\
+				Answer:\\
+				Nonlinear ordinary differential equation with an order of 1, independent variable $t$, and dependent variable $p$.\\
+				
+				\item A differential equation is given. Classify it as an ordinary differential equation (ODE) or a partial differential equation (PDE), give the order, and indicate the independent and dependent variables. If the equation is an ordinary differential equation, indicate whether the equation is linear or nonlinear.\\\\
+				$8\frac{d^4y}{dx^4}=x(1-x)$\\
+				(deflection of beams)\\\\
+				Answer:\\
+				Linear ordinary differential equation with an order of 4, independent variable of $x$, and dependent variable of $y$.\\
+				
+				\item Write a differential equation that fits the physical description.\\
+				The rate of change of the mass $A$ of salt at time $t$ is proportional to the square of the mass of salt present at time $t$.\\\\
+				Answer:\\
+				The differential equation, with proportionality constant $k$, is $\frac{dA}{dt}=kA^2$\\
+				
+				\item Determine whether the given function is a solution to the given differential equation.\\
+				$\theta =e^{2t}-2e^{3t}$, $\frac{d^2\theta}{dt^2}-\theta \frac{d\theta}{dt}+5\theta =-9e^{3t}$\\\\
+				Answer:\\
+				Find the first and second derivative of $\theta$ and plug them in to the corresponding spots in the given differential equation.\\\\
+				The function $\theta =e^{2t}-2e^{3t}$ \textbf{is not} a solution to the differential equation $\frac{d^2\theta}{dt^2}-\theta \frac{d\theta}{dt}+5\theta =-9e^{3t}$, because when $e^{2t}-2e^{3t}$ is substituted for $\theta$, $2e^{2t}-6e^{3t}$ is substituted for $\frac{d\theta}{dt}$ and $4e^{2t}-18e^{3t}$ is substituted for $\frac{d^2\theta}{dt^2}$, the two sides of the differential equation \textbf{are not} equivalent.
+				
+			\end{enumerate}
+	\chapter*{1.2 Solutions to Initial Value Problems}
+	\chapter*{1.3 Direction Fields}
+	\chapter*{1.4 The Approximation Method of Euler}
+\end{document}
+
